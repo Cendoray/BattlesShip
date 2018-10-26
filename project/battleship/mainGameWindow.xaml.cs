@@ -1,3 +1,4 @@
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -5,18 +6,11 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
 using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace battleship
 {
@@ -487,81 +481,67 @@ namespace battleship
             Germany.IsChecked = true;
             human.setString = skin;
             checkImage();
-
-
         }
 
         private void checkImage()
         {
-            if (!horizental[0])
-                BattleShip.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("../../Images/" + skin + "/battleshipV.png");
-            if (horizental[0])
-                BattleShip.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("../../Images/" + skin + "/battleshipH.png");
-            if (!horizental[1])
-                Cruiser.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("../../Images/" + skin + "/cruiserV.png");
-            if (horizental[1])
-                Cruiser.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("../../Images/" + skin + "/cruiserH.png");
-            if (!horizental[2])
-                Destroyer.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("../../Images/" + skin + "/destroyerV.png");
-            if (horizental[2])
-                Destroyer.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("../../Images/" + skin + "/destroyerH.png");
-            if (!horizental[3])
-                Submarine.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("../../Images/" + skin + "/submarineV.png");
-            if (horizental[3])
-                Submarine.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("../../Images/" + skin + "/submarineH.png");
-            if (!horizental[4])
-                AircraftCarrier.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("../../Images/" + skin + "/carrierV.png");
-            if (horizental[4])
-                AircraftCarrier.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("../../Images/" + skin + "/carrierH.png");
+            BindSourceImage(BattleShip, 0, "/battleshipV.png", "/battleshipH.png");
+            BindSourceImage(Cruiser, 1, "/cruiserV.png", "/cruiserH.png");
+            BindSourceImage(Destroyer, 2, "/destroyerV.png", "/destroyerH.png");
+            BindSourceImage(Submarine, 3, "/submarineV.png", "/submarineH.png");
+            BindSourceImage(AircraftCarrier, 4, "/carrierV.png", "/carrierH.png");
         }
 
 
         private void BButton_Click(object sender, RoutedEventArgs e)
         {
             horizental[0] = !horizental[0];
-            if (!horizental[0])
-                BattleShip.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("../../Images/" + skin + "/battleshipV.png");
-            if (horizental[0])
-                BattleShip.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("../../Images/" + skin + "/battleshipH.png");
+
+            BindSourceImage(BattleShip, 0, "/battleshipV.png", "/battleshipH.png");
         }
 
         private void CButton_Click(object sender, RoutedEventArgs e)
         {
             horizental[1] = !horizental[1];
-            if (!horizental[1])
-                Cruiser.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("../../Images/" + skin + "/cruiserV.png");
-            if (horizental[1])
-                Cruiser.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("../../Images/" + skin + "/cruiserH.png");
+
+            BindSourceImage(Cruiser, 1, "/cruiserV.png", "/cruiserH.png");
         }
 
         private void DButton_Click(object sender, RoutedEventArgs e)
         {
             horizental[2] = !horizental[2];
-            if (!horizental[2])
-                Destroyer.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("../../Images/" + skin + "/destroyerV.png");
-            if (horizental[2])
-                Destroyer.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("../../Images/" + skin + "/destroyerH.png");
+
+            BindSourceImage(Destroyer, 2, "/destroyerV.png", "/destroyerH.png");
         }
 
 
         private void SButton_Click(object sender, RoutedEventArgs e)
         {
             horizental[3] = !horizental[3];
-            if (!horizental[3])
-                Submarine.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("../../Images/" + skin + "/submarineV.png");
-            if (horizental[3])
-                Submarine.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("../../Images/" + skin + "/submarineH.png");
+
+            BindSourceImage(Submarine, 3, "/submarineV.png", "/submarineH.png");
         }
 
 
         private void ACButton_Click(object sender, RoutedEventArgs e)
         {
             horizental[4] = !horizental[4];
-            if (!horizental[4])
-                AircraftCarrier.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("../../Images/" + skin + "/carrierV.png");
-            if (horizental[4])
-                AircraftCarrier.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("../../Images/" + skin + "/carrierH.png");
+
+            BindSourceImage(AircraftCarrier, 4, "/carrierV.png", "/carrierH.png");
         }
+
+        private void BindSourceImage(Image image, int number, string sourceV, string sourceH)
+        {
+            if(!horizental[number])
+            {
+                image.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("../../Images/" + skin + sourceV);
+            }
+            else
+            {
+                image.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("../../Images/" + skin + sourceH);
+            }
+        }
+
 
         private void LayShip(object sender, MouseButtonEventArgs e)
         {
