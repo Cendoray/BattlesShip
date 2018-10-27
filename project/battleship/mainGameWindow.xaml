@@ -87,12 +87,12 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="3*"/>
                     <ColumnDefinition Width="2*"/>
+                    <!--<ColumnDefinition Width="2*"/>-->
                     <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="2*"/>
 
                 </Grid.ColumnDefinitions>
 
-                <Grid x:Name="HumanGrid" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30 10 0 0" Width="300" Grid.Column="0" MouseLeftButtonDown="LayShip" >
+                <Grid x:Name="HumanGrid" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="73,10,0,-0.6" Width="300" Grid.Column="0" MouseLeftButtonDown="LayShip" >
                     <Grid.Background>
                         <ImageBrush ImageSource="Images/background.jpg" TileMode="Tile" Stretch="UniformToFill"/>
                     </Grid.Background>
@@ -124,7 +124,7 @@
                 </Grid>
 
 
-                <WrapPanel Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 50 0 0" Background="#FF8D8D8D">
+                <WrapPanel Grid.Column="1" Margin="30,10,30,250.4" Background="#FF8D8D8D">
                     <Grid x:Name="shipsLocations">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50"/>
@@ -167,7 +167,8 @@
                 </WrapPanel>
 
 
-                <Grid x:Name="AIGrid" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 10 0 0" Width="300" Grid.Column="2" MouseLeftButtonDown="ImageGotClicked">
+                <Grid x:Name="AIGrid" VerticalAlignment="Top" Margin="0,0,71.8,0" 
+                      Grid.Column="2" MouseLeftButtonDown="ImageGotClicked" HorizontalAlignment="Right" Width="300" >
                     <Grid.Background>
                         <ImageBrush ImageSource="Images\background2.jpg" TileMode="Tile" Stretch="UniformToFill"/>
                     </Grid.Background>
@@ -198,9 +199,10 @@
                 </Grid>
 
 
-                <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="3" FontFamily="OCR A Extended" HorizontalScrollBarVisibility="Auto">
-                    <TextBlock x:Name="actions" Text="" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="20, 40, 20, 0" Background="#FF8D8D8D"  />
+                <ScrollViewer x:Name="scrollViewer" VerticalScrollBarVisibility="Auto" Grid.Column="1" FontFamily="OCR A Extended" HorizontalScrollBarVisibility="Auto" Margin="8,65,10.8,0.4" Height="200">
+                    <TextBlock x:Name="actions" Text=""  HorizontalAlignment="Center" VerticalAlignment="Top" Background="#FF8D8D8D" Width="282" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="Auto"   />
                 </ScrollViewer>
+
                 <Label x:Name="TurnTimeLeft" Content="TurnTimeLeft" Grid.Column="1" HorizontalAlignment="Left" Margin="8,268,0,0" VerticalAlignment="Top" FontFamily="OCR A Extended" Visibility="Visible" Foreground="White"/>
                 <TextBlock x:Name="timeLeft" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="105,268,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontFamily="OCR A Extended" Visibility="Visible" Foreground="#FFF3F3F3"/>
             </Grid>
@@ -212,9 +214,9 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="Start" Content="_Start" Width="150" HorizontalAlignment="Left" Margin="20,30,0,-0.4" IsDefault="True" Click="Start_Click" Grid.Column="0" Height="20" VerticalAlignment="Top" FontFamily="OCR A Extended"/>
+                <Button x:Name="Start" Content="_Start" Width="150" HorizontalAlignment="Left" Margin="232,30,0,-0.4" IsDefault="True" Click="Start_Click" Grid.Column="0" Height="20" VerticalAlignment="Top" FontFamily="OCR A Extended"/>
                 <Button x:Name="Leaderboard" Content="_Leaderboard" Width="150" Height="20" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 30 0 0" Click="Leaderboard_Click" Grid.Column="1" FontFamily="OCR A Extended"/>
-                <Button x:Name="Stop" Content="Sto_p" Width="150" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 30 20 0" IsCancel="True" Click="Stop_Click" Grid.Column="2" FontFamily="OCR A Extended"/>
+                <Button x:Name="Stop" Content="Sto_p" Width="150" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,30,221.8,-0.4" IsCancel="True" Click="Stop_Click" Grid.Column="2" FontFamily="OCR A Extended"/>
             </Grid>
 
 

@@ -45,6 +45,7 @@ namespace battleship
                 this.skin = value; ; }
             }
 
+
         //HUMAN SHIPS
         public List<Ship> myShips = new List<Ship>();
 
@@ -85,7 +86,6 @@ namespace battleship
 			//ADD SHIPS TO THE BOARDS WHO HAVE SHIP PROERTIES
 			Reset();
 		}
-
 
 		//METHOD USED TO CHANGE THE TYPE VALUE OF THE BOARDS WHO HAVE SHIPS ON THEM + SET THE SHIPS
 		public void Reset()
@@ -164,45 +164,30 @@ namespace battleship
 					MyGrid[row][startPosCol].Type = SquareType.Undamaged;
 					//GIVE IT A SHIP INDEX
 					MyGrid[row][startPosCol].ShipIndex = shipIndex;
-					Image image = new Image();
-					switch (ship)
+
+                    string photoSource = "";
+
+                    switch (ship)
 					{
 						case 0:
-							image.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("../../Images/" + skin + "/vertical/battleship" + imagePos.ToString() + ".png");
-							image.Stretch = Stretch.Fill;
-							Grid.SetRow(image, row);
-							Grid.SetColumn(image, startPosCol);
-							grid.Children.Add(image);
-							break;
+                            photoSource = "/vertical/battleship";
+                            break;
 						case 1:
-							image.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("../../Images/" + skin + "/vertical/cruiser" + imagePos.ToString() + ".png");
-							image.Stretch = Stretch.Fill;
-							Grid.SetRow(image, row);
-							Grid.SetColumn(image, startPosCol);
-							grid.Children.Add(image);
-							break;
+                            photoSource = "/vertical/cruiser";
+                            break;
 						case 2:
-							image.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("../../Images/" + skin + "/vertical/destroyer" + imagePos.ToString() + ".png");
-							image.Stretch = Stretch.Fill;
-							Grid.SetRow(image, row);
-							Grid.SetColumn(image, startPosCol);
-							grid.Children.Add(image);
-							break;
+                            photoSource = "/vertical/destroyer";
+                            break;
 						case 3:
-							image.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("../../Images/" + skin + "/vertical/submarine" + imagePos.ToString() + ".png");
-							image.Stretch = Stretch.Fill;
-							Grid.SetRow(image, row);
-							Grid.SetColumn(image, startPosCol);
-							grid.Children.Add(image);
-							break;
+                            photoSource = "/vertical/submarine";
+                            break;
 						case 4:
-							image.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("../../Images/" + skin + "/vertical/carrier" + imagePos.ToString() + ".png");
-							image.Stretch = Stretch.Fill;
-							Grid.SetRow(image, row);
-							Grid.SetColumn(image, startPosCol);
-							grid.Children.Add(image);
-							break;
+                            photoSource = "/vertical/carrier";
+                            break;
 					}
+
+                    CreateAndAddImageOnGrid(photoSource, row, startPosCol, imagePos, true);
+
 					//REMAINING LENGTH -1
 					--remainingLength;
 					//imagePos +1
@@ -216,8 +201,29 @@ namespace battleship
 			return false;
 		}
 
+        private void CreateAndAddImageOnGrid(string photoSource, int row, int column,
+            int imagesPos, bool isVertical)
+        {
+            Image image = new Image();
+            image.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("../../Images/"
+                + skin + photoSource + imagePos.ToString() + ".png");
+            image.Stretch = Stretch.Fill;
 
-		private bool PlacementPossibleH(int shipIndex, int remainingLength, int x, int y)
+            if (isVertical)
+            {
+                Grid.SetRow(image, row);
+                Grid.SetColumn(image, column);
+            }
+            else
+            {
+                Grid.SetColumn(image, row);
+                Grid.SetRow(image, column);
+            }
+
+            grid.Children.Add(image);
+        }
+
+        private bool PlacementPossibleH(int shipIndex, int remainingLength, int x, int y)
 		{
 			{
 				//X AND Y TO PLACE
@@ -261,45 +267,30 @@ namespace battleship
 					MyGrid[startPosRow][col].Type = SquareType.Undamaged;
 					//GIVE IT A SHIP INDEX
 					MyGrid[startPosRow][col].ShipIndex = shipIndex;
-					Image image = new Image();
+
+                    string photoSource = "";
+
 					switch (ship)
 					{
 						case 0:
-							image.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("../../Images/" + skin + "/horizental/battleship" + imagePos.ToString() + ".png");
-							image.Stretch = Stretch.Fill;
-							Grid.SetColumn(image, col);
-							Grid.SetRow(image, startPosRow);
-							grid.Children.Add(image);
-							break;
-						case 1:
-							image.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("../../Images/" + skin + "/horizental/cruiser" + imagePos.ToString() + ".png");
-							image.Stretch = Stretch.Fill;
-							Grid.SetColumn(image, col);
-							Grid.SetRow(image, startPosRow);
-							grid.Children.Add(image);
-							break;
+                            photoSource = "/horizental/battleship";
+                            break;
+                        case 1:
+                            photoSource = "/horizental/cruiser";
+                            break;
 						case 2:
-							image.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("../../Images/" + skin + "/horizental/destroyer" + imagePos.ToString() + ".png");
-							image.Stretch = Stretch.Fill;
-							Grid.SetColumn(image, col);
-							Grid.SetRow(image, startPosRow);
-							grid.Children.Add(image);
-							break;
+                            photoSource = "/horizental/destroyer";
+                            break;
 						case 3:
-							image.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("../../Images/" + skin + "/horizental/submarine" + imagePos.ToString() + ".png");
-							image.Stretch = Stretch.Fill;
-							Grid.SetColumn(image, col);
-							Grid.SetRow(image, startPosRow);
-							grid.Children.Add(image);
-							break;
+                            photoSource = "/horizental/submarine";
+                            break;
 						case 4:
-							image.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("../../Images/" + skin + "/horizental/carrier" + imagePos.ToString() + ".png");
-							image.Stretch = Stretch.Fill;
-							Grid.SetColumn(image, col);
-							Grid.SetRow(image, startPosRow);
-							grid.Children.Add(image);
-							break;
+                            photoSource = "/horizental/carrier";
+                            break;
 					}
+
+                    CreateAndAddImageOnGrid(photoSource, col, startPosRow, imagePos, false);
+
 					// -1 TO LENGTH
 					--remainingLength;
 					//+1 to imagePos
@@ -351,6 +342,8 @@ namespace battleship
 			bool isSunk;
 			//SQUARETYPE TO VERIFY THE TYPE OF THE HITTEN LOCATION, AND IF IT IS SUNK
 			SquareType newType = otherPlayer.FiredAt(row, col, out damagedIndex, out isSunk);
+
+            //MessageBox.Show(newType.ToString());
 			//CHANGE THE SHIPINDEX TO DAMAGE INDEX
 			otherPlayer.MyGrid[row][col].ShipIndex = damagedIndex;
 
@@ -418,8 +411,10 @@ namespace battleship
 							location[1] = -4;
 							return location;
 						}
-					}
-					else
+
+                        //square.Type = SquareType.Damaged;
+                    }
+                    else
 					{
 						//SET THE TYPE OF THE SQUARE TO DAMAGED
 						square.Type = SquareType.Miss;
@@ -438,6 +433,7 @@ namespace battleship
 				//IF ITS UNKNOWN RETURN ERROR
 				//IF ITS SUNK RETURN ERROR
 				case SquareType.Sunk:
+                case SquareType.Damaged:
 					goto default;
 				default:
 					location[0] = -2;
