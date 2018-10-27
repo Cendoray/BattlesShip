@@ -342,6 +342,8 @@ namespace battleship
 			bool isSunk;
 			//SQUARETYPE TO VERIFY THE TYPE OF THE HITTEN LOCATION, AND IF IT IS SUNK
 			SquareType newType = otherPlayer.FiredAt(row, col, out damagedIndex, out isSunk);
+
+            //MessageBox.Show(newType.ToString());
 			//CHANGE THE SHIPINDEX TO DAMAGE INDEX
 			otherPlayer.MyGrid[row][col].ShipIndex = damagedIndex;
 
@@ -409,8 +411,10 @@ namespace battleship
 							location[1] = -4;
 							return location;
 						}
-					}
-					else
+
+                        //square.Type = SquareType.Damaged;
+                    }
+                    else
 					{
 						//SET THE TYPE OF THE SQUARE TO DAMAGED
 						square.Type = SquareType.Miss;
@@ -429,6 +433,7 @@ namespace battleship
 				//IF ITS UNKNOWN RETURN ERROR
 				//IF ITS SUNK RETURN ERROR
 				case SquareType.Sunk:
+                case SquareType.Damaged:
 					goto default;
 				default:
 					location[0] = -2;

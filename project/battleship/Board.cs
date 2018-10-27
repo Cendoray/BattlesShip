@@ -10,7 +10,8 @@ using System.Windows.Controls;
 namespace battleship
 {
     //ENUMS REPRESENTING THE VALUE THE SQUARE CAN BE (CAN BE UNKNOWN, WATER, UNDAMAGED, DAMAGED OR SUNK)
-    public enum SquareType {Unknown, Water, Undamaged, Miss, Sunk }
+    public enum SquareType {Unknown, Water, Undamaged, Miss, Sunk, Damaged }
+
     [Serializable]
     public class Board : DependencyObject
     {
@@ -29,9 +30,10 @@ namespace battleship
             //SET THE TYPE OF THE BOARD
             set { SetValue(TypeProperty, value); }
         }
+        
         //READ ONLY VALUE WHICH SETS THE PROPERTY OF A BOARD
         public static readonly DependencyProperty TypeProperty =
-        DependencyProperty.Register("Type", typeof(SquareType), typeof(Board), null);
+            DependencyProperty.Register("Type", typeof(SquareType), typeof(Board), null);
 
 
         //CREATE A BOARD USING ROWS AND COLS

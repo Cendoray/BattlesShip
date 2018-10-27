@@ -55,15 +55,11 @@ namespace battleship
 
         private Boolean musicPlaying = true;
 
-        public List<Boolean> horizental = new List<Boolean> { true, true, true, true, true };
+        private List<Boolean> horizental = new List<Boolean> { true, true, true, true, true };
 
-
-
-
-        public List<Boolean> isHorizental
+        public List<Boolean> IsHorizental
         {
             get { return horizental; }
-            set {; }
         }
 
         List<Boolean> boatClicked = new List<Boolean> { false, false, false, false, false };
@@ -147,26 +143,23 @@ namespace battleship
             if (T.Enabled)
             {
 
-
                 //getting the play 
                 if (expireTime == 0)
                 {
-
-
                     expireTime = expireTime2;
                     otherPlayer.AITurn();
-
                 }
+
                 expireTime--;
                 //increment 1 to gametime
                 GameTime++;
                 //if the round for the player has started, start adding time to its counter
+
                 if (PT.Enabled == true)
                 {
                     PlayTime++;
-
-
                 }
+                
                 //invoke the time_passed textbox and change its values with the new value of gamtime
                 this.Dispatcher.Invoke(() =>
                 {
@@ -693,9 +686,13 @@ namespace battleship
                 if (yAxis == 10)
                     break;
             }
+
             if (T.Enabled || GameTime > 0)
             {
-                if (otherPlayer.MyGrid[xAxis][yAxis].Type != SquareType.Sunk && otherPlayer.MyGrid[xAxis][yAxis].Type != SquareType.Miss)
+                if (otherPlayer.MyGrid[xAxis][yAxis].Type != SquareType.Sunk && 
+                    otherPlayer.MyGrid[xAxis][yAxis].Type != SquareType.Miss &&
+                    otherPlayer.MyGrid[xAxis][yAxis].Type != SquareType.Damaged
+                    )
                 {
                     actions.Text += human.Fire(xAxis, yAxis, otherPlayer);
                     actions.Text += Environment.NewLine;

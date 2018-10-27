@@ -548,6 +548,7 @@ namespace battleship
 			//DAMAGE INDEX
 			damagedIndex = -1;
 			Image image = new Image();
+
 			//SWITCH TO SEE THE TYPE OF THE LOCATION HIT
 			switch (MyGrid[row][col].Type)
 			{
@@ -587,7 +588,10 @@ namespace battleship
 								//IS SUNK IS TRUE, AND MINESUNK IS THE SHIP INDEX OF THE SQUARE
 								MineSunk(MyGrid[row][col].ShipIndex);
 							}
-							return SquareType.Sunk;
+
+                            MyGrid[row][col].Type = SquareType.Damaged;
+
+                            return SquareType.Sunk;
 					}
 				//IF ITS AN UNDAMAGED SHIP
 				case SquareType.Undamaged:
