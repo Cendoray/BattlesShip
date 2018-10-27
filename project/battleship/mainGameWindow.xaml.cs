@@ -691,11 +691,10 @@ namespace battleship
             {
                 if (otherPlayer.MyGrid[xAxis][yAxis].Type != SquareType.Sunk && 
                     otherPlayer.MyGrid[xAxis][yAxis].Type != SquareType.Miss &&
-                    otherPlayer.MyGrid[xAxis][yAxis].Type != SquareType.Damaged
-                    )
+                    otherPlayer.MyGrid[xAxis][yAxis].Type != SquareType.Damaged)
                 {
-                    actions.Text += human.Fire(xAxis, yAxis, otherPlayer);
-                    actions.Text += Environment.NewLine;
+                    string s = human.Fire(xAxis, yAxis, otherPlayer);
+                    actions.Text += s + "\n";
                     otherPlayer.AITurn();
                     shotsFired++;
                     attempts++;
